@@ -14,7 +14,7 @@ public:
 	void addFile(QString filePath);// Метод для добавления файла в список отслеживаемых файлов
 
 signals:
-	// Сигналы, которые отправляются при изменении состояния файла
+	// Сигналы, которые отправляются при изменении состояния файла или добавлении его в мониторинг
 	void fileCreated(QString filePath, qint64 fileSize);
 	void fileDeleted(QString filePath);
 	void fileModified(QString filePath, qint64 fileSize);
