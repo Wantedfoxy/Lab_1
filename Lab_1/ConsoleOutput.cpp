@@ -5,9 +5,14 @@ ConsoleOutput::ConsoleOutput(QObject* parent) : QObject(parent)
 
 }
 // Метод вывода информации о существующем файле
-void ConsoleOutput::printFileExistence(QString filePath, qint64 fileSize)
+void ConsoleOutput::printFileCreated(QString filePath, qint64 fileSize)
 {
-	qDebug() << "File exists:" << filePath << ", size:" << fileSize << "bytes";
+	qDebug() << "File was created:" << filePath << ", size:" << fileSize << "bytes";
+}
+
+void ConsoleOutput::printfileAddedToWatcher(QString filePath, qint64 fileSize)
+{
+	qDebug() << "File was added to watcher:" << filePath << ", size:" << fileSize << "bytes";
 }
 // Метод вывода информации об изменении существующего файла
 void ConsoleOutput::printFileModification(QString filePath, qint64 fileSize)
@@ -15,7 +20,7 @@ void ConsoleOutput::printFileModification(QString filePath, qint64 fileSize)
 	qDebug() << "Existing file has been modified:" << filePath << ", size:" << fileSize << "bytes";
 }
 // Метод вывода информации о том, что файла не существует
-void ConsoleOutput::printFileNotExists(QString filePath)
+void ConsoleOutput::printFileDeleted(QString filePath)
 {
-	qDebug() << "File does not exist:" << filePath;
+	qDebug() << "File was deleted:" << filePath;
 }

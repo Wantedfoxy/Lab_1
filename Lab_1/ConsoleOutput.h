@@ -18,7 +18,8 @@ public:
 
 public slots:
 	// Различные методы вывода информации в консоль
-	void printFileExistence(QString filePath, qint64 fileSize);
+	void printfileAddedToWatcher(QString filePath, qint64 fileSize);
+	void printFileCreated(QString filePath, qint64 fileSize);
 	void printFileModification(QString filePath, qint64 fileSize);
-	void printFileNotExists(QString filePath);
+	void printFileDeleted(QString filePath);
 };
