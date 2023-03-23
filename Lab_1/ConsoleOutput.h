@@ -16,7 +16,8 @@ class ConsoleOutput : public QObject
 	Q_OBJECT
 
 public:
-	explicit ConsoleOutput(QObject* parent = nullptr);// Конструктор класса
+	static ConsoleOutput* getInstance();
+	~ConsoleOutput();
 
 public slots:
 	// Различные методы вывода информации в консоль
@@ -25,4 +26,8 @@ public slots:
 	void printFileModification(string filePath, qint64 fileSize);
 	void printFileDeleted(string filePath);
 	void printFileDeletedFromWatcher(string filePath);
+
+private:
+	ConsoleOutput(QObject* parent = nullptr);// Конструктор класса
+	static ConsoleOutput* instance;
 };

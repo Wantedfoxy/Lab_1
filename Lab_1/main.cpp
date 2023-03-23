@@ -8,8 +8,8 @@ int main(int argc, char* argv[])
 	// Создаем объект приложения
 	QCoreApplication a(argc, argv);
 	// Создаем объекты классов FileWatcher и ConsoleOutput
-	FileWatcher* watcher = new FileWatcher();
-	ConsoleOutput* output = new ConsoleOutput();
+	FileWatcher* watcher = FileWatcher::getInstance();
+	ConsoleOutput* output = ConsoleOutput::getInstance();
 	// Устанавливаем соединения между сигналами и слотами
 	QObject::connect(watcher, &FileWatcher::fileCreated, output, &ConsoleOutput::printFileCreated);
 	QObject::connect(watcher, &FileWatcher::fileModified, output, &ConsoleOutput::printFileModification);
