@@ -1,5 +1,21 @@
 ﻿#include "FileWatcher.h"
 #include "ConsoleOutput.h"
+
+FileWatcher* FileWatcher::instance = nullptr;
+
+FileWatcher* FileWatcher::getInstance()
+{
+	if (instance == nullptr)
+	{
+		return instance = new FileWatcher(new QObject());
+	}
+
+	return instance;
+}
+
+FileWatcher::~FileWatcher()
+{};
+
 // Конструктор класса FileWatcher
 FileWatcher::FileWatcher(QObject* parent) :
 	QObject(parent)
@@ -24,7 +40,7 @@ void FileWatcher::deleteFile(QString filePath)
 	m_fileList.removeOne(fileInfo);
 	m_fileLastModified.remove(filePath);
 	m_isExist.remove(filePath);
-    emit fileDeletedFromWatcher(filePath.toStdString());  //Посылаем сигнал об удалении файла
+	emit fileDeletedFromWatcher(filePath.toStdString());  //Посылаем сигнал об удалении файла
 }
 
 void FileWatcher::UpdateFileState()
@@ -35,7 +51,7 @@ void FileWatcher::UpdateFileState()
 		// Создание объекта QFile для текущего файла
 		QFileInfo file(m_fileList[i].filePath());
 		// Если файл существует и ранее не был зарегистрирован как существующий
-		if (file.exists() && m_isExist[file.filePath()] == false) {
+		if (file.exists() && !m_isExist[file.filePath()]) {
 			m_fileLastModified[file.filePath()] = file.lastModified();// Обновляем дату изменения файла
 			m_isExist[file.filePath()] = true;// Регистрируем файл как существующий
 			emit fileCreated(file.filePath().toStdString(), file.size());// Имитируем сигнал
@@ -44,7 +60,7 @@ void FileWatcher::UpdateFileState()
 			m_fileLastModified[file.filePath()] = file.lastModified();//Обновляем дату изменения файла
 			emit fileModified(file.filePath().toStdString(), file.size());//Имитируем сигнал
 		}//Если файл не существует и ранее был зарегистрирован как существующий
-		else if (!file.exists() && m_isExist[file.filePath()] == true) {
+		else if (!file.exists() && m_isExist[file.filePath()]) {
 			m_fileLastModified.remove(file.filePath());
 			m_isExist[file.filePath()] = false;// Регистрируем файл как несуществующий
 			emit fileDeleted(file.filePath().toStdString());// Имитируем сигнал

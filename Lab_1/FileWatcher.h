@@ -9,8 +9,8 @@ class FileWatcher : public QObject
 {
 	Q_OBJECT// Макрос для использования сигналов и слотов
 public:
-	explicit FileWatcher(QObject* parent = nullptr);// Конструктор класса
-
+	static FileWatcher* getInstance();
+	~FileWatcher();
 	void addFile(QString filePath);// Метод для добавления файла в список отслеживаемых файлов
 	void deleteFile(QString filename);
 
@@ -26,6 +26,8 @@ public slots:
 	void UpdateFileState();// Слот для проверки изменений в файловой системе
 
 private:
+	FileWatcher(QObject* parent = nullptr);// Конструктор класса
+	static FileWatcher* instance;
 	QList<QFileInfo> m_fileList;// Список отслеживаемых файлов
 	QMap<QString, QDateTime> m_fileLastModified;// Информация о размере файлов
 	QMap <QString, bool> m_isExist; // Переменная, хранящая статус файла на момент последней проверки
