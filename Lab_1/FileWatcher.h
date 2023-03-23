@@ -27,6 +27,6 @@ public slots:
 
 private:
 	QList<QFileInfo> m_fileList;// Список отслеживаемых файлов
-	QMap<QString, qint64> m_fileSizes;// Информация о размере файлов
+	QMap<QString, QDateTime> m_fileLastModified;// Информация о размере файлов
 	QMap <QString, bool> m_isExist; // Переменная, хранящая статус файла на момент последней проверки
 };
