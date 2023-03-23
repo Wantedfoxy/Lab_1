@@ -15,7 +15,16 @@ void FileWatcher::addFile(QString filePath)
 	m_fileSizes[fileInfo.filePath()] = fileInfo.size();
 	m_isExist[fileInfo.filePath()] = fileInfo.exists();
 
-	emit fileAddedToWatcher(fileInfo.filePath(), m_fileSizes[fileInfo.filePath()]);
+	emit fileAddedToWatcher(fileInfo.filePath().toStdString(), m_fileSizes[fileInfo.filePath()]);
+}
+
+void FileWatcher::deleteFile(QString filePath)
+{
+	QFileInfo fileInfo(filePath);
+	m_fileList.removeOne(fileInfo);
+	m_fileSizes.remove(filePath);
+	m_isExist.remove(filePath);
+    emit fileDeletedFromWatcher(filePath.toStdString());  //Посылаем сигнал об удалении файла
 }
 
 void FileWatcher::UpdateFileState()
@@ -29,16 +38,16 @@ void FileWatcher::UpdateFileState()
 		if (file.exists() && m_isExist[file.fileName()] == false) {
 			m_fileSizes[file.fileName()] = file.size();// Обновляем размер файла
 			m_isExist[file.fileName()] = true;// Регистрируем файл как существующий
-			emit fileCreated(file.fileName(), m_fileSizes[file.fileName()]);// Отправляем сигнал
+			emit fileCreated(file.fileName().toStdString(), m_fileSizes[file.fileName()]);// Имитируем сигнал
 		}// Если файл существует и его размер изменился
 		else if (file.exists() && file.size() != m_fileSizes[file.fileName()]) {
 			m_fileSizes[file.fileName()] = file.size();//Обновляем размер файла
-			emit fileModified(file.fileName(), m_fileSizes[file.fileName()]);//Отправляем сигнал
+			emit fileModified(file.fileName().toStdString(), m_fileSizes[file.fileName()]);//Имитируем сигнал
 		}//Если файл не существует и ранее был зарегистрирован как существующий
 		else if (!file.exists() && m_isExist[file.fileName()] == true) {
 			m_fileSizes.remove(file.fileName()); // удаление размера файла из m_fileSizes
 			m_isExist[file.fileName()] = false;// Регистрируем файл как несуществующий
-			emit fileDeleted(file.fileName());// Отправляем сигнал
+			emit fileDeleted(file.fileName().toStdString());// Имитируем сигнал
 		}
 	}
 }

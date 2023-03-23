@@ -14,7 +14,8 @@ int main(int argc, char* argv[])
 	QObject::connect(watcher, &FileWatcher::fileCreated, output, &ConsoleOutput::printFileCreated);
 	QObject::connect(watcher, &FileWatcher::fileModified, output, &ConsoleOutput::printFileModification);
 	QObject::connect(watcher, &FileWatcher::fileDeleted, output, &ConsoleOutput::printFileDeleted);
-	QObject::connect(watcher, &FileWatcher::fileAddedToWatcher, output, &ConsoleOutput::printfileAddedToWatcher);
+	QObject::connect(watcher, &FileWatcher::fileAddedToWatcher, output, &ConsoleOutput::printFileAddedToWatcher);
+	QObject::connect(watcher, &FileWatcher::fileDeletedFromWatcher, output, &ConsoleOutput::printFileDeletedFromWatcher);
 	// Добавляем файлы для отслеживания
 	watcher->addFile("C:\\files_for_lab_1\\First.txt");
 	watcher->addFile("C:\\files_for_lab_1\\Second.txt");

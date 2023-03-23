@@ -7,7 +7,9 @@
 // Используется вместе с классом FileWatcher
 #pragma once
 #include <QObject>
-#include <QDebug>
+#include <Iostream>
+
+using namespace std;
 
 class ConsoleOutput : public QObject
 {
@@ -18,8 +20,9 @@ public:
 
 public slots:
 	// Различные методы вывода информации в консоль
-	void printfileAddedToWatcher(QString filePath, qint64 fileSize);
-	void printFileCreated(QString filePath, qint64 fileSize);
-	void printFileModification(QString filePath, qint64 fileSize);
-	void printFileDeleted(QString filePath);
+	void printFileAddedToWatcher(string filePath, qint64 fileSize);
+	void printFileCreated(string filePath, qint64 fileSize);
+	void printFileModification(string filePath, qint64 fileSize);
+	void printFileDeleted(string filePath);
+	void printFileDeletedFromWatcher(string filePath);
 };
