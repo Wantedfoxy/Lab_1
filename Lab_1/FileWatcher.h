@@ -12,19 +12,21 @@ public:
 	explicit FileWatcher(QObject* parent = nullptr);// Конструктор класса
 
 	void addFile(QString filePath);// Метод для добавления файла в список отслеживаемых файлов
+	void deleteFile(QString filename);
 
 signals:
 	// Сигналы, которые отправляются при изменении состояния файла или добавлении его в мониторинг
-	void fileCreated(QString filePath, qint64 fileSize);
-	void fileDeleted(QString filePath);
-	void fileModified(QString filePath, qint64 fileSize);
-	void fileAddedToWatcher(QString filePath, qint64 fileSize);
+	void fileCreated(std::string filePath, qint64 fileSize);
+	void fileDeleted(std::string filePath);
+	void fileDeletedFromWatcher(std::string filePath);
+	void fileModified(std::string filePath, qint64 fileSize);
+	void fileAddedToWatcher(std::string filePath, qint64 fileSize);
 
 public slots:
 	void UpdateFileState();// Слот для проверки изменений в файловой системе
 
 private:
 	QList<QFileInfo> m_fileList;// Список отслеживаемых файлов
-	QMap<QString, qint64> m_fileSizes;// Информация о размере файлов
+	QMap<QString, QDateTime> m_fileLastModified;// Информация о размере файлов
 	QMap <QString, bool> m_isExist; // Переменная, хранящая статус файла на момент последней проверки
 };
