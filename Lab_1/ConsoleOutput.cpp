@@ -6,14 +6,17 @@ ConsoleOutput* ConsoleOutput::getInstance()
 {
 	if (instance == nullptr)
 	{
-		return instance = new ConsoleOutput(new QObject());
+		return instance = new ConsoleOutput();
 	}
 
 	return instance;
 }
 
 ConsoleOutput::~ConsoleOutput()
-{};
+{
+	instance->deleteLater(); // удаляем объект в асинхронном режиме
+	instance = nullptr; // устанавливаем указатель на nullptr
+};
 
 // Конструктор класса ConsoleOutput
 ConsoleOutput::ConsoleOutput(QObject* parent) : QObject(parent)
@@ -41,5 +44,15 @@ void ConsoleOutput::printFileDeleted(string filePath)
 //Метод вывода информации об удалении файла из мониторинга
 void ConsoleOutput::printFileDeletedFromWatcher(string filePath)
 {
-	cout << "File was deleted: " << filePath << endl;
+	cout << "File: " << filePath << " was deleted from Watcher" << endl;
+}
+//Метод вывода информации о том, что файл уже находимтся под мониторингом
+void ConsoleOutput::printFileAlreadyAddedToWatcher(string filePath)
+{
+	cout << "File: " << filePath << " has already been added to Watcher" << endl;
+}
+//Метод вывода информации о том, что такого файла нет под мониторингом
+void ConsoleOutput::printNoSuchFileInWatcher(string filePath)
+{
+	cout << "There is no such file in the Watcher: " << filePath << endl;
 }

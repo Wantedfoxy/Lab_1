@@ -18,9 +18,11 @@ signals:
 	// Сигналы, которые отправляются при изменении состояния файла или добавлении его в мониторинг
 	void fileCreated(std::string filePath, qint64 fileSize);
 	void fileDeleted(std::string filePath);
-	void fileDeletedFromWatcher(std::string filePath);
 	void fileModified(std::string filePath, qint64 fileSize);
 	void fileAddedToWatcher(std::string filePath, qint64 fileSize);
+	void fileDeletedFromWatcher(std::string filePath);
+	void noSuchFileInWatcher(std::string filePath);
+	void fileAlreadyAddedToWatcher(std::string filePath);
 
 public slots:
 	void UpdateFileState();// Слот для проверки изменений в файловой системе

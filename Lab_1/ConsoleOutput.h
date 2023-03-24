@@ -25,6 +25,8 @@ public slots:
 	void printFileCreated(string filePath, qint64 fileSize);
 	void printFileModification(string filePath, qint64 fileSize);
 	void printFileDeleted(string filePath);
+	void printFileAlreadyAddedToWatcher(string filePath);
+	void printNoSuchFileInWatcher(string filePath);
 	void printFileDeletedFromWatcher(string filePath);
 
 private:
