@@ -21,7 +21,7 @@ public:
 
 public slots:
 	// Различные методы вывода информации в консоль
-	void printFileAddedToWatcher(string filePath, qint64 fileSize);
+	void printFileAddedToWatcher(string filePath, qint64 fileSize, bool isExist);
 	void printFileCreated(string filePath, qint64 fileSize);
 	void printFileModification(string filePath, qint64 fileSize);
 	void printFileDeleted(string filePath);

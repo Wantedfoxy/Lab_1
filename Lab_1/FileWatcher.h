@@ -19,7 +19,7 @@ signals:
 	void fileCreated(std::string filePath, qint64 fileSize);
 	void fileDeleted(std::string filePath);
 	void fileModified(std::string filePath, qint64 fileSize);
-	void fileAddedToWatcher(std::string filePath, qint64 fileSize);
+	void fileAddedToWatcher(std::string filePath, qint64 fileSize, bool isExist);
 	void fileDeletedFromWatcher(std::string filePath);
 	void noSuchFileInWatcher(std::string filePath);
 	void fileAlreadyAddedToWatcher(std::string filePath);

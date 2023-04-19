@@ -27,9 +27,16 @@ void ConsoleOutput::printFileCreated(string filePath, qint64 fileSize)
 	cout << "File was created: " << filePath << ", size: " << fileSize << "bytes" << endl;
 }
 //Метод вывода информации о добавлении файла в мониторинг
-void ConsoleOutput::printFileAddedToWatcher(string filePath, qint64 fileSize)
+void ConsoleOutput::printFileAddedToWatcher(string filePath, qint64 fileSize, bool isExist)
 {
-	cout << "File was added to watcher: " << filePath << ", size: " << fileSize << "bytes" << endl;
+	if (isExist)
+	{
+		cout << "File was added to watcher: " << filePath << ", size: " << fileSize << "bytes" << endl;
+	}
+	else {
+		cout << "File was added to watcher: " << filePath << ", It's not exist" << endl;
+	}
+
 }
 // Метод вывода информации об изменении существующего файла
 void ConsoleOutput::printFileModification(string filePath, qint64 fileSize)
@@ -44,12 +51,12 @@ void ConsoleOutput::printFileDeleted(string filePath)
 //Метод вывода информации об удалении файла из мониторинга
 void ConsoleOutput::printFileDeletedFromWatcher(string filePath)
 {
-	cout << "File: " << filePath << " was deleted from Watcher" << endl;
+	cout << "File " << filePath << " was deleted from Watcher" << endl;
 }
 //Метод вывода информации о том, что файл уже находимтся под мониторингом
 void ConsoleOutput::printFileAlreadyAddedToWatcher(string filePath)
 {
-	cout << "File: " << filePath << " has already been added to Watcher" << endl;
+	cout << "File " << filePath << " has already been added to Watcher" << endl;
 }
 //Метод вывода информации о том, что такого файла нет под мониторингом
 void ConsoleOutput::printNoSuchFileInWatcher(string filePath)

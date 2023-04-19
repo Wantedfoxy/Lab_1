@@ -35,7 +35,7 @@ void FileWatcher::addFile(QString filePath)
 		m_fileList.append(fileInfo);
 		m_fileLastModified[fileInfo.filePath()] = fileInfo.lastModified();
 		m_isExist[fileInfo.filePath()] = fileInfo.exists();
-		emit fileAddedToWatcher(fileInfo.filePath().toStdString(), fileInfo.size());
+		emit fileAddedToWatcher(fileInfo.filePath().toStdString(), fileInfo.size(), fileInfo.exists());
 	}
 }
 
