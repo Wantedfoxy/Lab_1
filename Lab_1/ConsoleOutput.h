@@ -7,7 +7,7 @@
 // Используется вместе с классом FileWatcher
 #pragma once
 #include <QObject>
-#include <Iostream>
+#include <iostream>
 
 using namespace std;
 
