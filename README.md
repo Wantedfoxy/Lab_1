@@ -26,4 +26,4 @@ FileWatcher
 
 <h2>Диаграмма классов</h2>
 
-![image](https://user-images.githubusercontent.com/50704060/227518804-83a9ba10-4458-4c0d-b6a0-d8664de49d75.png)
+![Lab1](https://user-images.githubusercontent.com/50704060/233340468-52d25e2b-5770-4a0d-8e2c-7e0b7e31ebb7.jpeg)
